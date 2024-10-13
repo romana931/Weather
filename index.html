@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="master.css">
+</head>
+
+<body>
+    <button id="themeToggle" class="theme-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="none">
+            <path d="M21.5 14.0784C20.3003 14.7189 18.9301 15.0821 17.4751 15.0821C12.7491 15.0821 8.91792 11.2509 8.91792 6.52485C8.91792 5.06986 9.28105 3.69968 9.92163 2.5C5.66765 3.49698 2.5 7.31513 2.5 11.8731C2.5 17.1899 6.8101 21.5 12.1269 21.5C16.6849 21.5 20.503 18.3324 21.5 14.0784Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </button>
+    <h1>Weather Forecast</h1>
+    <form id="locationForm">
+        <label for="country">Select Country:</label>
+        <select id="country" name="country">
+            <option value="Netherlands">Netherlands</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Greece">Greece</option>
+            <option value="Northern Ireland">Northern Ireland</option>
+            <option value="Spain">Spain</option>
+            <option value="Germany">Germany</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Romania">Romania</option>
+            <option value="Hungary">Hungary</option>
+            <option value="Wales">Wales</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Scotland">Scotland</option>
+            <option value="Italy">Italy</option>
+            <option value="France">France</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Gibraltar">Gibraltar</option>
+            <option value="Finland">Finland</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="Norway">Norway</option>
+            <option value="England">England</option>
+            <option value="Czech Republic">Czech Republic</option>
+            <option value="Iceland">Iceland</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Austria">Austria</option>
+            <option value="Poland">Poland</option>
+            <option value="Pakistan">Pakistan</option>
+        </select>
+    
+        <label for="city">Select City:</label>
+        <select id="city" name="city">
+            <option value="Amsterdam">Amsterdam</option>
+            <option value="Ankara">Ankara</option>
+            <option value="Åstorp">Åstorp</option>
+            <option value="Athens">Athens</option>
+            <option value="Belfast">Belfast</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Berlin">Berlin</option>
+            <option value="Bern">Bern</option>
+            <option value="Bilbao">Bilbao</option>
+            <option value="Brussels">Brussels</option>
+            <option value="Bucharest">Bucharest</option>
+            <option value="Budapest">Budapest</option>
+            <option value="Cardiff">Cardiff</option>
+            <option value="Cologne">Cologne</option>
+            <option value="Copenhagen">Copenhagen</option>
+            <option value="Cork">Cork</option>
+            <option value="Dublin">Dublin</option>
+            <option value="Edinburgh">Edinburgh</option>
+            <option value="Florence">Florence</option>
+            <option value="Frankfurt">Frankfurt</option>
+            <option value="French Riviera">French Riviera</option>
+            <option value="Funchal">Funchal</option>
+            <option value="Gibraltar">Gibraltar</option>
+            <option value="Gothenburg">Gothenburg</option>
+            <option value="Hamburg">Hamburg</option>
+            <option value="Helsinki">Helsinki</option>
+            <option value="Ibiza">Ibiza</option>
+            <option value="Kyiv">Kyiv</option>
+            <option value="Lillehammer">Lillehammer</option>
+            <option value="Lisbon">Lisbon</option>
+            <option value="London">London</option>
+            <option value="Madrid">Madrid</option>
+            <option value="Mallorca">Mallorca</option>
+            <option value="Manchester">Manchester</option>
+            <option value="Marseille">Marseille</option>
+            <option value="Maspalomas">Maspalomas</option>
+            <option value="Milan">Milan</option>
+            <option value="Munich">Munich</option>
+            <option value="Naples">Naples</option>
+            <option value="Oñati">Oñati</option>
+            <option value="Oslo">Oslo</option>
+            <option value="Paris">Paris</option>
+            <option value="Prague">Prague</option>
+            <option value="Reykjavík">Reykjavík</option>
+            <option value="Riga">Riga</option>
+            <option value="Rome">Rome</option>
+            <option value="Santa Cruz das Flores">Santa Cruz das Flores</option>
+            <option value="Santa Cruz de Tenerife">Santa Cruz de Tenerife</option>
+            <option value="Skye">Skye</option>
+            <option value="Sofia">Sofia</option>
+            <option value="Stockholm">Stockholm</option>
+            <option value="Tallinn">Tallinn</option>
+            <option value="Vienna">Vienna</option>
+            <option value="Warsaw">Warsaw</option>
+            <option value="York">York</option>
+            <option value="Zurich">Zurich</option>
+            <option value="Islamabad">Islamabad</option>
+        </select>
+        <button type="submit">Get Weather</button>
+    </form>
+    
+    <div id="weatherResult">
+        <!-- Weather result will be displayed here -->
+    </div> 
+    <script>
+        document.getElementById('themeToggle').addEventListener('click', function() {
+    // Toggle the night-mode class on the body
+    document.body.classList.toggle('night-mode');
+});
+      document.getElementById('locationForm').addEventListener('submit', async function (e) {
+    e.preventDefault(); // Prevent form from reloading the page
+    
+    const country = document.getElementById('country').value;
+    const city = document.getElementById('city').value;
+
+    const encodedCity = encodeURIComponent(city);
+    const encodedCountry = encodeURIComponent(country);
+
+    console.log(`Fetching weather data for city: ${city}, country: ${country}`); // Debugging log
+
+    try {
+        const response = await fetch(`http://localhost:3001/weather?country=${encodedCountry}&city=${encodedCity}`); // Ensure URL encoding
+        const data = await response.json();
+        console.log('Response Data:', data); // Debugging log
+
+        if (data.error) {
+            document.getElementById('weatherResult').innerHTML = `<p>${data.error}</p>`;
+        } else {
+            const imageHTML = data.weatherImage ? `<img src="http://localhost:3001${data.weatherImage}" alt="${data.weatherCondition}">` : '';
+
+            document.getElementById('weatherResult').innerHTML = `
+                <p>Weather Condition: ${data.weatherCondition}</p>
+                ${imageHTML}
+            `;
+        }
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+        document.getElementById('weatherResult').innerHTML = `<p>html Error fetching weather data.</p>`;
+    }
+});
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue */
+    color: #000; /* Black text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* H1 Styling */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem; /* Add spacing below h1 */
+}
+
+/* Center Form Elements */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width for the dropdown form */
+    margin-bottom: 2rem; /* Add spacing below form */
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+select, button {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+select {
+    background-color: #ddd;
+    color: #000;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Image Box Styling */
+#weatherResult {
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Larger width for the image box */
+    min-height: 200px; /* Ensure it has enough height for the image */
+}
+
+/* Weather Result Image */
+#weatherResult img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 1rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: absolute;
+    top: -15px;
+    right: 0px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle svg {
+    width: 40px;
+    height: 40px;
+}
+
+/* Night Mode Styles */
+body.night-mode {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    width: 1529px;
+}
+body.night-mode.theme-toggle {
+    top: 0px;
+}
+
+body.night-mode form {
+    background-color: #333; /* Dark form background */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+body.night-mode select {
+    background-color: #555; /* Darker dropdown */
+    color: #fff;
+}
+
+body.night-mode button {
+    background-color: #777; /* Dark button */
+}
+
+body.night-mode #weatherResult {
+    background-color: #222; /* Darker result section */
+}
+
+body.night-mode .theme-toggle {
+    color: #fff; /* White for moon icon */
+}
+/* Weather Result Box Styling */
+#weatherResult {
+    background-color: #f8f8f8;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 600px; /* Larger width for the image box */
+    min-height: 200px; /* Ensure it has enough height for the image */
+    display: flex;
+    align-items: center; /* Center image vertically */
+    justify-content: center; /* Center image horizontally */
+    flex-direction: column; /* Allow both image and text to be centered */
+}
+
+/* Weather Result Image */
+#weatherResult img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 1rem;
+}
+
+
+
+
+
